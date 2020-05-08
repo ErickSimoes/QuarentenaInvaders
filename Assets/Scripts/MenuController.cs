@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
 
-    public void StartGameScene() {
-        SceneManager.LoadScene("GameScene");
+    public void CallScene(string sceneName) {
+        SceneManager.LoadScene(sceneName);
     }
 }
