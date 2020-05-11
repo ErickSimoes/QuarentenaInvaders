@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using Battlehub.Dispatcher;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour {
 
@@ -8,6 +11,9 @@ public class PlayerBehaviour : MonoBehaviour {
     private float xMax = 9;
     private float yMax = 5;
     public GameObject laser;
+    public GameObject laserReference;
+    public int lives = 3;
+    public Text livesText;
 
     void Start() {
 
@@ -16,6 +22,7 @@ public class PlayerBehaviour : MonoBehaviour {
     void Update() {
         Moviment();
         Shoot();
+        CheckLives();
     }
 
     void Moviment() {
@@ -35,7 +42,23 @@ public class PlayerBehaviour : MonoBehaviour {
 
     void Shoot() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            Instantiate(laser, transform.position, Quaternion.identity);
+            Instantiate(laser, laserReference.transform.position, Quaternion.identity);
+        }
+    }
+
+    void CheckLives() {
+        Dispatcher.Current.BeginInvoke(() => {
+            livesText.text = lives.ToString();
+        });
+        if (lives <= 0) {
+            SceneManager.LoadScene("EndScene");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "asteroid") {
+            Destroy(collision.gameObject);
+            lives--;
         }
     }
 }
