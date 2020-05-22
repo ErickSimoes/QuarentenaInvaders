@@ -60,5 +60,10 @@ public class PlayerBehaviour : MonoBehaviour {
             Destroy(collision.gameObject);
             lives--;
         }
+
+        if (collision.tag == "life") {
+            Destroy(collision.gameObject);
+            lives++;
+        }
     }
 }
