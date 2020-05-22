@@ -7,6 +7,7 @@ TagManager:
   - asteroid
   - life
   - pu_speed
+  - pu_triple_shoot
   layers:
   - Default
   - TransparentFX
