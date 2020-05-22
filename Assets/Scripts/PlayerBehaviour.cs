@@ -12,9 +12,11 @@ public class PlayerBehaviour : MonoBehaviour {
     private float yMax = 5;
     public GameObject laser;
     public GameObject laserReference;
+    public GameObject laserTripleShoot;
     public int lives = 3;
     public Text livesText;
     private bool isSpeed = false;
+    private bool isTripleShoot = false;
 
     void Start() {
 
@@ -48,7 +50,11 @@ public class PlayerBehaviour : MonoBehaviour {
 
     void Shoot() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            Instantiate(laser, laserReference.transform.position, Quaternion.identity);
+            if (isTripleShoot) {
+                Instantiate(laserTripleShoot, laserReference.transform.position, Quaternion.identity);
+            } else {
+                Instantiate(laser, laserReference.transform.position, Quaternion.identity);
+            }
         }
     }
 
@@ -76,11 +82,22 @@ public class PlayerBehaviour : MonoBehaviour {
             Destroy(collision.gameObject);
             StartCoroutine(StartSpeedPU());
         }
+
+        if (collision.tag == "pu_triple_shoot") {
+            Destroy(collision.gameObject);
+            StartCoroutine(StartTripleShootPU());
+        }
     }
 
     IEnumerator StartSpeedPU() {
         isSpeed = true;
         yield return new WaitForSeconds(5f);
         isSpeed = false;
+    }
+
+    IEnumerator StartTripleShootPU() {
+        isTripleShoot = true;
+        yield return new WaitForSeconds(5f);
+        isTripleShoot = false;
     }
 }

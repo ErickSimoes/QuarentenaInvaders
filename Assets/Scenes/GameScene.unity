@@ -220,6 +220,8 @@ MonoBehaviour:
     type: 3}
   life: {fileID: 2352433221300551471, guid: 5436860890440f540a4f951893bf05a0, type: 3}
   puSpeed: {fileID: 270219450462423976, guid: 266f4289016e68f45a9c4047a2062f2d, type: 3}
+  puTripleShoot: {fileID: 7173972710368736016, guid: d3afbc4a139ca394899f8000ca70966e,
+    type: 3}
 --- !u!4 &390545702
 Transform:
   m_ObjectHideFlags: 0
@@ -653,6 +655,8 @@ MonoBehaviour:
   speed: 15
   laser: {fileID: 3022892950768578215, guid: a5effb2a8eee97a47bca170fe13146aa, type: 3}
   laserReference: {fileID: 884289408}
+  laserTripleShoot: {fileID: 2714891792046578874, guid: 17f0ed2d6e04b8c4ba45604be230678f,
+    type: 3}
   lives: 3
   livesText: {fileID: 1109763828}
 --- !u!212 &1426952462
@@ -713,7 +717,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426952460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.46, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.43166, y: 0.43166, z: 0.43166}
   m_Children:
   - {fileID: 884289409}
