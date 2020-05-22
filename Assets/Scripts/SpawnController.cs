@@ -6,10 +6,12 @@ public class SpawnController : MonoBehaviour {
 
     public GameObject asteroid;
     public GameObject life;
+    public GameObject puSpeed;
 
     void Start() {
         InvokeRepeating("SpawnAsteroid", 1f, 2f);
         InvokeRepeating("SpawnLife", 10f, 20f);
+        InvokeRepeating("SpawnPuSpeed", Random.Range(5, 10), 20f);
     }
 
 
@@ -25,5 +27,10 @@ public class SpawnController : MonoBehaviour {
     void SpawnLife() {
         Vector3 position = new Vector3(Random.Range(-7, 7), transform.position.y);
         Instantiate(life, position, Quaternion.identity);
+    }
+
+    void SpawnPuSpeed() {
+        Vector3 position = new Vector3(Random.Range(-7, 7), transform.position.y);
+        Instantiate(puSpeed, position, Quaternion.identity);
     }
 }

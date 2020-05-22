@@ -14,6 +14,7 @@ public class PlayerBehaviour : MonoBehaviour {
     public GameObject laserReference;
     public int lives = 3;
     public Text livesText;
+    private bool isSpeed = false;
 
     void Start() {
 
@@ -26,8 +27,13 @@ public class PlayerBehaviour : MonoBehaviour {
     }
 
     void Moviment() {
-        transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
-        transform.Translate(Vector3.up * Input.GetAxis("Vertical") * speed * Time.deltaTime);
+        if (isSpeed) {
+            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * 2 * Time.deltaTime);
+            transform.Translate(Vector3.up * Input.GetAxis("Vertical") * speed * 2 * Time.deltaTime);
+        } else {
+            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
+            transform.Translate(Vector3.up * Input.GetAxis("Vertical") * speed * Time.deltaTime);
+        }
 
         if (transform.position.x > xMax) {
             transform.position = new Vector3(-xMax, transform.position.y);
@@ -65,5 +71,16 @@ public class PlayerBehaviour : MonoBehaviour {
             Destroy(collision.gameObject);
             lives++;
         }
+
+        if (collision.tag == "pu_speed") {
+            Destroy(collision.gameObject);
+            StartCoroutine(StartSpeedPU());
+        }
+    }
+
+    IEnumerator StartSpeedPU() {
+        isSpeed = true;
+        yield return new WaitForSeconds(5f);
+        isSpeed = false;
     }
 }

@@ -219,6 +219,7 @@ MonoBehaviour:
   asteroid: {fileID: 3138877436118613275, guid: 2dd8ce3bcffd29449902c7467c0dd3da,
     type: 3}
   life: {fileID: 2352433221300551471, guid: 5436860890440f540a4f951893bf05a0, type: 3}
+  puSpeed: {fileID: 270219450462423976, guid: 266f4289016e68f45a9c4047a2062f2d, type: 3}
 --- !u!4 &390545702
 Transform:
   m_ObjectHideFlags: 0
