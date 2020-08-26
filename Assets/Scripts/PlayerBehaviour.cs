@@ -71,6 +71,8 @@ public class PlayerBehaviour : MonoBehaviour {
         if (collision.tag == "asteroid") {
             Destroy(collision.gameObject);
             lives--;
+            // Mostar que ele recebeu dano
+            StartCoroutine(HitEffect());
         }
 
         if (collision.tag == "life") {
@@ -100,4 +102,23 @@ public class PlayerBehaviour : MonoBehaviour {
         yield return new WaitForSeconds(5f);
         isTripleShoot = false;
     }
+
+    IEnumerator HitEffect() {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+
+        Color[] colors = {
+            Color.white,
+            Color.clear
+        };
+
+        for (int i = 0; i < 6; i++) {
+            foreach (Color color in colors) {
+                sprite.color = color;
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+
+        sprite.color = Color.white;
+    }
+
 }
