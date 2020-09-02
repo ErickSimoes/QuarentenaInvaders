@@ -72,12 +72,13 @@ public class PlayerBehaviour : MonoBehaviour {
             Destroy(collision.gameObject);
             lives--;
             // Mostar que ele recebeu dano
-            StartCoroutine(HitEffect());
+            StartCoroutine(BlinkEffect(new[] { Color.white, Color.clear }));
         }
 
         if (collision.tag == "life") {
             Destroy(collision.gameObject);
             lives++;
+            StartCoroutine(BlinkEffect(new[] {Color.red, new Color(255, 165, 0) }));
         }
 
         if (collision.tag == "pu_speed") {
@@ -103,15 +104,10 @@ public class PlayerBehaviour : MonoBehaviour {
         isTripleShoot = false;
     }
 
-    IEnumerator HitEffect() {
+    IEnumerator BlinkEffect(Color[] colors, int blinkTime = 6) {
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
 
-        Color[] colors = {
-            Color.white,
-            Color.clear
-        };
-
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < blinkTime; i++) {
             foreach (Color color in colors) {
                 sprite.color = color;
                 yield return new WaitForSeconds(0.1f);
