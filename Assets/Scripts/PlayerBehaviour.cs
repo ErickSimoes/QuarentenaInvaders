@@ -7,14 +7,18 @@ using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour {
 
-    public float speed;
+    [SerializeField]
+    private float speed;
     private float xMax = 9;
     private float yMax = 5;
-    public GameObject laser;
-    public GameObject laserReference;
-    public GameObject laserTripleShoot;
-    public int lives = 3;
-    public Text livesText;
+    [SerializeField] private GameObject laser;
+    [SerializeField]
+    private GameObject laserReference;
+    [SerializeField]
+    private GameObject laserTripleShoot;
+    private int lives = 3;
+    [SerializeField]
+    private Text livesText;
     private bool isSpeed = false;
     private bool isTripleShoot = false;
 
