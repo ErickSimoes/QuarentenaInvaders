@@ -11,7 +11,8 @@ public class PlayerBehaviour : MonoBehaviour {
     private float speed;
     private float xMax = 9;
     private float yMax = 5;
-    [SerializeField] private GameObject laser;
+    [SerializeField]
+    private GameObject laser;
     [SerializeField]
     private GameObject laserReference;
     [SerializeField]
@@ -21,6 +22,9 @@ public class PlayerBehaviour : MonoBehaviour {
     private Text livesText;
     private bool isSpeed = false;
     private bool isTripleShoot = false;
+    [SerializeField]
+    private Text scoreText;
+    public int score;
 
     void Start() {
 
@@ -30,6 +34,7 @@ public class PlayerBehaviour : MonoBehaviour {
         Moviment();
         Shoot();
         CheckLives();
+        UpdateScore();
     }
 
     void Moviment() {
@@ -64,11 +69,17 @@ public class PlayerBehaviour : MonoBehaviour {
 
     void CheckLives() {
         Dispatcher.Current.BeginInvoke(() => {
-            livesText.text = lives.ToString();
+            livesText.text = "❤" + lives.ToString();
         });
         if (lives <= 0) {
             SceneManager.LoadScene("EndScene");
         }
+    }
+
+    void UpdateScore() {
+        Dispatcher.Current.BeginInvoke(() => {
+            scoreText.text = score.ToString();
+        });
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
