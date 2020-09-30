@@ -8,6 +8,7 @@ TagManager:
   - life
   - pu_speed
   - pu_triple_shoot
+  - music_controller
   layers:
   - Default
   - TransparentFX

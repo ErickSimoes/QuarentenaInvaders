@@ -72,6 +72,7 @@ public class PlayerBehaviour : MonoBehaviour {
             livesText.text = "❤" + lives.ToString();
         });
         if (lives <= 0) {
+            ScoreController.SaveScore(score);
             SceneManager.LoadScene("EndScene");
         }
     }
